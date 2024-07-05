@@ -20,6 +20,7 @@ const InputType = ({
           name={name}
           value={value}
           onChange={onChange}
+          autoComplete={inputType === "password" ? "new-password" : "off"}
         />
       </div>
     </>

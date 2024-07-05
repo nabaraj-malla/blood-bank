@@ -5,7 +5,22 @@ import moment from "moment";
 
 const Hospitals = () => {
   const [data, setData] = useState([]);
-  // find donar records
+
+  // Fetch data for hospitals new code
+  const getHospitalsData = async () => {
+    try {
+      const { data } = await API.get("/inventory/get-hospitals");
+      if (data?.success) {
+        setData(data?.hospitals);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getHospitalsData();
+  }, []);
+  // find donar records old code
   const getDonars = async () => {
     try {
       const { data } = await API.get("/inventory/get-hospitals");

@@ -27,7 +27,7 @@ const Sidebar = () => {
                 }`}
               >
                 <i className="fa-solid fa-hand-holding-medical"></i>
-                <Link to="/donar">Donar</Link>
+                <Link to="/donar">Donor</Link>
               </div>
               <div
                 className={`menu-item ${
@@ -69,7 +69,21 @@ const Sidebar = () => {
             </>
           )}
 
-          {(user?.role === "donar" || user?.role === "hospital") && (
+          {/* old code */}
+          {/* {(user?.role === "donar" || user?.role === "hospital") && (
+            <div
+              className={`menu-item ${
+                location.pathname === "/organisation" && "active"
+              }`}
+            >
+              <i className="fa-solid fa-building-ngo"></i>
+              <Link to="/organisation">Organisation</Link>
+            </div>
+          )} */}
+          {/* old code end */}
+
+          {/* new code */}
+          {user?.role === "donar" && (
             <div
               className={`menu-item ${
                 location.pathname === "/organisation" && "active"
@@ -79,16 +93,44 @@ const Sidebar = () => {
               <Link to="/organisation">Organisation</Link>
             </div>
           )}
+          {/* new code end */}
 
           {user?.role === "hospital" && (
-            <div
-              className={`menu-item ${
-                location.pathname === "/consumer" && "active"
-              }`}
-            >
-              <i className="fa-solid fa-building-ngo"></i>
-              <Link to="/consumer">Consumer</Link>
-            </div>
+            // new code
+            <>
+              <div
+                className={`menu-item ${location.pathname === "/" && "active"}`}
+              >
+                <i className="fa-solid fa-warehouse"></i>
+                <Link to="/">Inventory</Link>
+              </div>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/organisation" && "active"
+                }`}
+              >
+                <i className="fa-solid fa-building-ngo"></i>
+                <Link to="/organisation">Organisation</Link>
+              </div>
+              <div
+                className={`menu-item ${
+                  location.pathname === "/consumer" && "active"
+                }`}
+              >
+                <i className="fa-solid fa-building-ngo"></i>
+                <Link to="/consumer">Consumer</Link>
+              </div>
+            </>
+            // new code end
+            // previous code
+            //   <div
+            //   className={`menu-item ${
+            //     location.pathname === "/consumer" && "active"
+            //   }`}
+            // >
+            //   <i className="fa-solid fa-building-ngo"></i>
+            //   <Link to="/consumer">Consumer</Link>
+            // </div>
           )}
           {user?.role === "donar" && (
             <div

@@ -31,7 +31,8 @@ const HomePage = () => {
   }, []);
   return (
     <Layout>
-      {user?.role === "admin" && navigate("/admin")}
+      {/* // I added this statement here (i.e. user?.role === "donar") because I don't want add inventory in donar sectiono*/}
+      {(user?.role === "admin" || user?.role === "donar") && navigate("/admin")}
       {error && <span>{alert(error)}</span>}
       {loading ? (
         <Spinner />
@@ -53,7 +54,7 @@ const HomePage = () => {
                   <th scope="col">Blood Group</th>
                   <th scope="col">Inventory Type</th>
                   <th scope="col">Quantity</th>
-                  <th scope="col">Donar Email</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Time & Date</th>
                 </tr>
               </thead>

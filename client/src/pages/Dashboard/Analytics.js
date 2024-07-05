@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/shared/Layout/Header";
 import API from "./../../services/API";
 import moment from "moment";
-
 const Analytics = () => {
   const [data, setData] = useState([]);
   const [inventoryData, setInventoryData] = useState([]);
+  // const [conssumer]
 
   const colors = [
     "#607274",
     "#FAEED1",
     "#DED0B6",
     "#B2A59B",
-    "#11235A",
+    "#c8ccdb",
     "#596FB7",
     "#BF3131",
     "#FF9800",
@@ -21,6 +21,9 @@ const Analytics = () => {
   const getBloodGroupData = async () => {
     try {
       const { data } = await API.get("/analytics/bloodGroups-data");
+      // const { data } = await API.get("/analytics/bloodGroupsDemo");
+      // const {data} =
+
       if (data?.success) {
         setData(data?.bloodGroupData);
         // console.log(data);
@@ -52,7 +55,6 @@ const Analytics = () => {
   useEffect(() => {
     getBloodRecords();
   }, []);
-
   return (
     <>
       <Header />
@@ -88,7 +90,7 @@ const Analytics = () => {
               <th scope="col">Blood Group</th>
               <th scope="col">Inventory Type</th>
               <th scope="col">Quantity</th>
-              <th scope="col">Donar Email</th>
+              <th scope="col">Email</th>
               <th scope="col">Time & Date</th>
             </tr>
           </thead>

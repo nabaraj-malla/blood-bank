@@ -9,7 +9,7 @@ export const userLogin = createAsyncThunk(
       const { data } = await API.post("/auth/login", { role, email, password });
       // store token
       if (data.success) {
-        alert(data.message);
+        // alert(data.message);
         localStorage.setItem("token", data.token);
         window.location.replace("/");
       }
@@ -54,7 +54,7 @@ export const userRegister = createAsyncThunk(
         phone,
       });
       if (data.success) {
-        alert("user registered successfully");
+        // alert("user registered successfully");
         // alert(data.message)
         // toast.success(data.message);
         // toast.success("user registered successfully");

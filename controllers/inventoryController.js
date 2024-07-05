@@ -1,22 +1,29 @@
 const mongoose = require("mongoose");
 const inventoryModel = require("../models/inventoryModel");
 const userModel = require("../models/userModel");
-
 // CREATE INVENTORY
 const createInventoryController = async (req, res) => {
   try {
     const { email } = req.body; // It get email from our body
     // validation
     const user = await userModel.findOne({ email });
-    if (!user) {
-      throw new Error("user not found");
+    // if (!user) {
+    //   throw new Error("user not found");
+    // }
+    if (
+      req.body.inventoryType === "in" &&
+      user.role != "organisation" &&
+      user.role != "donar"
+    ) {
+      throw new Error("Not valid account");
     }
-    // if (inventoryType === "in" && user.role != "donar") {
-    //   throw new Error("Not a donr account");
-    // }
-    // if (inventoryType === "out" && user.role != "hospital") {
-    //   throw new Error("Not a hospital");
-    // }
+    if (
+      req.body.inventoryType === "out" &&
+      user.role != "patient" &&
+      user.role != "hospital"
+    ) {
+      throw new Error("Not a valid account");
+    }
 
     if (req.body.inventoryType == "out") {
       const requestedBloodGroup = req.body.bloodGroup;
@@ -38,7 +45,6 @@ const createInventoryController = async (req, res) => {
           },
         },
       ]);
-      // console.log("Total in", totalInOfRequestedBlood);
       const totalIn = totalInOfRequestedBlood[0]?.total || 0;
       // calculate Out Blood Quantity
       const totalOutOfRequestedBlood = await inventoryModel.aggregate([
@@ -65,6 +71,7 @@ const createInventoryController = async (req, res) => {
         return res.status(500).send({
           success: false,
           message: `Only ${availableQuantityOfBloodGroup}ml of ${requestedBloodGroup.toUpperCase()} is available`,
+          // message: `Insufficient amount of requsted blood`,
         });
       }
       req.body.hospital = user?._id;
@@ -162,7 +169,7 @@ const getRecentInventoryController = async (req, res) => {
   }
 };
 
-// GET DONAR RECORDS
+// GET DONAR RECORDS for organisation
 const getDonarsController = async (req, res) => {
   try {
     const organisation = req.body.userId;
@@ -187,7 +194,7 @@ const getDonarsController = async (req, res) => {
     });
   }
 };
-
+// get hospital record for organisation
 const getHospitalController = async (req, res) => {
   try {
     const organisation = req.body.userId;
@@ -214,7 +221,7 @@ const getHospitalController = async (req, res) => {
   }
 };
 
-// GET ORGANISATION PROFILE
+// GET ORGANISATION PROFILE for donor
 const getOrganisationController = async (req, res) => {
   try {
     const donar = req.body.userId;

@@ -47,7 +47,7 @@ const Form = ({ formType, submitBtn, formTitle }) => {
               defaultChecked
             />
             <label htmlFor="donarRadio" className="form-check-label">
-              Donar
+              Donor
             </label>
           </div>
           <div className="form-check ms-2">
@@ -86,7 +86,20 @@ const Form = ({ formType, submitBtn, formTitle }) => {
               onChange={(e) => setRole(e.target.value)}
             />
             <label htmlFor="organisationRadio" className="form-check-label">
-              Organisation
+              Organisation &nbsp;
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              type="radio"
+              className="form-check-input"
+              name="role"
+              id="patientRadio"
+              value={"patient"}
+              onChange={(e) => setRole(e.target.value)}
+            />
+            <label htmlFor="donarRadio" className="form-check-label">
+              Patient
             </label>
           </div>
         </div>
@@ -108,6 +121,7 @@ const Form = ({ formType, submitBtn, formTitle }) => {
                   <InputType
                     labelText={"Password"}
                     labelFor={"forPassword"}
+                    inputType={"password"}
                     name={"password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -118,7 +132,10 @@ const Form = ({ formType, submitBtn, formTitle }) => {
             case formType === "register": {
               return (
                 <>
-                  {(role === "admin" || role === "donar") && (
+                  {/* (role === "admin" || role === "donar") */}
+                  {(role === "patient" ||
+                    role === "donar" ||
+                    role === "admin") && (
                     <InputType
                       labelText={"Name"}
                       labelFor={"forName"}

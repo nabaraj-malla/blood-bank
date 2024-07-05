@@ -7,11 +7,10 @@ const AdminHome = () => {
   return (
     <Layout>
       <div className="container">
-        <div className="d-flex flex-column mt-4">
+        <div className="d-flex flex-column justify-content-center mt-4">
           <h1>
-            Welcome Admin <i className="text-success">{user?.name}</i>
+            Welcome <i className="text-success">{user?.name}</i>
           </h1>
-          <h3>Manage Blood Bank App</h3>
         </div>
       </div>
     </Layout>

@@ -18,6 +18,7 @@ const OrganisationPage = () => {
           setData(data?.organisations);
         }
       }
+      // if (user?.role === "hospital" || user?.role === "organisation")
       if (user?.role === "hospital") {
         const { data } = await API.get(
           "/inventory/get-organisation-for-hospital"

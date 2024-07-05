@@ -12,10 +12,10 @@ const Register = () => {
         <Spinner />
       ) : (
         <div className="row g-0">
-          <div className="col-md-8 form-banner">
+          <div className="col-md-5 form-banner">
             <img src="./assets/images/banner11.avif" alt="registerImage" />
           </div>
-          <div className="col-md-4 form-container">
+          <div className="col-md-7 form-container">
             <Form
               formTitle={"Register"}
               submitBtn={"Register"}
