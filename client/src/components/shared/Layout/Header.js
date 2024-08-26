@@ -19,7 +19,7 @@ const Header = () => {
         <div className="container-fluid">
           <div className="navbar-brand h1">
             <BiDonateBlood color="red" />
-            Blood Inventory Management System
+            Blood Bank
           </div>
           <ul className="navbar-nav flex-row">
             <li className="nav-item mx-3">

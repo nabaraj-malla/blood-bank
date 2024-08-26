@@ -16,7 +16,6 @@ import DonarList from "./pages/Admin/DonarList";
 import HospitalList from "./pages/Admin/HospitalList";
 import OrgList from "./pages/Admin/OrgList";
 import AdminHome from "./pages/Admin/AdminHome";
-import INorganisation from "./pages/INorganisation";
 
 function App() {
   return (
